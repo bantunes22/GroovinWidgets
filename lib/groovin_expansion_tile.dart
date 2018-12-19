@@ -87,6 +87,38 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
 
   bool _isExpanded = false;
 
+  void expand() {
+    _setExpanded(true);
+  }
+
+  void collapse() {
+    _setExpanded(false);
+  }
+
+  void toggle() {
+    _setExpanded(!_isExpanded);
+  }
+
+  void _setExpanded(bool isExpanded) {
+    if (_isExpanded != isExpanded) {
+      setState(() {
+        _isExpanded = isExpanded;
+        if (_isExpanded)
+          _controller.forward();
+        else
+          _controller.reverse().then<void>((_) {
+            setState(() {
+              // Rebuild without widget.children.
+            });
+          });
+        PageStorage.of(context)?.writeState(context, _isExpanded);
+      });
+      if (widget.onExpansionChanged != null) {
+        widget.onExpansionChanged(_isExpanded);
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
