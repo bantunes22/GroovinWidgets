@@ -77,6 +77,7 @@ class GroovinExpansionTile extends StatefulWidget {
 
 class _GroovinExpansionTileState extends State<GroovinExpansionTile>
     with SingleTickerProviderStateMixin {
+class _GroovinExpansionTileState extends State<GroovinExpansionTile> with SingleTickerProviderStateMixin {
   static final Animatable<double> _easeOutTween = CurveTween(curve: Curves.easeOut);
   static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
   static final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
@@ -200,7 +201,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
           ? null
           : GestureDetector(
               child: Column(children: widget.children),
-              onTap: collapseOnChildTapped ? _handleTap : null,
+              onTap: widget.collapseOnChildTapped ? _handleTap : null,
             ),
     );
   }
