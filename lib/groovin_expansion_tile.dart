@@ -75,8 +75,6 @@ class GroovinExpansionTile extends StatefulWidget {
   _GroovinExpansionTileState createState() => _GroovinExpansionTileState();
 }
 
-class _GroovinExpansionTileState extends State<GroovinExpansionTile>
-    with SingleTickerProviderStateMixin {
 class _GroovinExpansionTileState extends State<GroovinExpansionTile> with SingleTickerProviderStateMixin {
   static final Animatable<double> _easeOutTween = CurveTween(curve: Curves.easeOut);
   static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
