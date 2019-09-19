@@ -25,6 +25,7 @@ class GroovinExpansionTile extends StatefulWidget {
     this.children = const <Widget>[],
     this.trailing,
     this.initiallyExpanded = false,
+    this.collapseOnChildTapped,
   })  : assert(initiallyExpanded != null),
         super(key: key);
 
@@ -66,6 +67,9 @@ class GroovinExpansionTile extends StatefulWidget {
 
   /// Specifies if the list tile is initially expanded (true) or collapsed (false, the default).
   final bool initiallyExpanded;
+
+  /// Specifies if the list tile collapsed when the child Column is tapped (true, the default).
+  final bool collapseOnChildTapped = true;
 
   @override
   _GroovinExpansionTileState createState() => _GroovinExpansionTileState();
@@ -192,7 +196,12 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
     return AnimatedBuilder(
       animation: _controller.view,
       builder: _buildChildren,
-      child: closed ? null : Column(children: widget.children),
+      child: closed
+          ? null
+          : GestureDetector(
+              child: Column(children: widget.children),
+              onTap: collapseOnChildTapped ? _handleTap : null,
+            ),
     );
   }
 }
