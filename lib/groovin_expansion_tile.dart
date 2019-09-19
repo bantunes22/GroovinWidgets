@@ -25,7 +25,7 @@ class GroovinExpansionTile extends StatefulWidget {
     this.children = const <Widget>[],
     this.trailing,
     this.initiallyExpanded = false,
-    this.collapseOnChildTapped,
+    this.collapseOnChildTapped = true,
   })  : assert(initiallyExpanded != null),
         super(key: key);
 
@@ -69,7 +69,7 @@ class GroovinExpansionTile extends StatefulWidget {
   final bool initiallyExpanded;
 
   /// Specifies if the list tile collapsed when the child Column is tapped (true, the default).
-  final bool collapseOnChildTapped = true;
+  final bool collapseOnChildTapped;
 
   @override
   _GroovinExpansionTileState createState() => _GroovinExpansionTileState();
